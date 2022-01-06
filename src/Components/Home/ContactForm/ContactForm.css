@@ -1,0 +1,10 @@
+
+.contact-form {
+    height:100vh;
+    position:relative; 
+    background-image: linear-gradient(rgba(23, 46, 65, 0.911), rgba(24, 45, 70, 0.911)),url(../../../images/contact.jpg); 
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 6em 0;   
+}

@@ -1,0 +1,27 @@
+.appointment-container {
+    height:420px;
+    position:relative; 
+    background-image: url(../../../images/newChair.jpg); 
+    background-position: left center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 13em 0;
+    
+}
+
+.appointment-container::before{
+    content:'';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    opacity: 0.9;
+    background: #3A4256;
+    
+}
+.appointment-container img{
+     
+    width: 100%;
+    height: 550px;
+    transform: translateY(-130px);
+}
