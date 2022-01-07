@@ -13,7 +13,7 @@ const MakeAppointment = () => {
                         <img src={doctorL} alt="treatment" />
                     </div>
                     <div style={{ zIndex: "5" }} className="col-md-7 py-5 text-white">
-                        <h5 style={{ color: "#1CC7C1" }}  >APPOINTMENT</h5>
+                        <h5 className='primary-text'>APPOINTMENT</h5>
                         <h1 className='my-4'>Exceptional Dental Care, <br />on Your Terms</h1>
                         <p className="lh-lg">
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex asperiores repudiandae est nemo quod mollitia, praesentium quisquam voluptatem magnam. Velit?

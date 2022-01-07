@@ -10,9 +10,9 @@ const DoctorCard = ({doctor}) => {
                 <div style={{ height: "63%", width: "63%", margin: "auto" }}>
                     <img style={{ width: "100%" }} src={doctorImg} alt="ima" />
                 </div>
-                <h4 className='mt-2' style={{ color: "#3A4256" }}>{name}</h4> 
+                <h4 className='mt-2 secondary-text'>{name}</h4> 
                 <small className='text-muted'> 
-                 <FontAwesomeIcon style={{color:"#1CC7C1"}} icon={faPhoneAlt} /> {phone}
+                 <FontAwesomeIcon className='primary-text' icon={faPhoneAlt} /> {phone}
                 </small>
             </div>
         </div>

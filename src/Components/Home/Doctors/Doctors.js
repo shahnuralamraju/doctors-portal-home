@@ -25,7 +25,7 @@ const Doctors = () => {
     return (
         <section style={{marginBottom:"8em"}}>
             <div className="text-center">
-                <h5 style={{ color: "#1CC7C1", fontWeight:"bold" }}>DOCTORS</h5>
+                <h5 className='primary-text'>DOCTORS</h5>
             </div>
             <div className='container mt-5 mb-5'>
                 <div className="row g-4">

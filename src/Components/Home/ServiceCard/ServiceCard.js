@@ -10,7 +10,7 @@ const ServiceCard = ({ service }) => {
                 <div style={{ height: "23%",width:"23%", margin: "auto" }}>
                     <img style={{ width: "100%" }} src={img} alt="ima" />
                 </div><br />
-                <h4 style={{ color: "#3A4256" }}>{name}</h4><br />
+                <h4 className='secondary-text'>{name}</h4><br />
                 <small className='text-muted'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis maiores deserunt voluptate laboriosam sunt dolorem iure cupiditate itaque ut sed!
                 </small>
             </div>

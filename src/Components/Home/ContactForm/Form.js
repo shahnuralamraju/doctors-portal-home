@@ -7,7 +7,7 @@ const Form = () => {
                 <input type="email" className="form-control form-input" placeholder="Email*" />
                 <input type="text" className="form-control form-input" placeholder="SubJect*" />
                 <textarea className="form-control form-input" rows="8" placeholder="Your Message*" />
-                <button style={{backgroundColor:"#1CC7C1", width:"40%"}} className="primary-btn">Submit</button>
+                <button style={{width:"40%", margin:"0 27%"}} className="primary-btn">Submit</button>
             </form>
         </div>
     );

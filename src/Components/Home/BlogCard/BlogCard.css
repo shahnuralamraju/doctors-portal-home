@@ -1,0 +1,32 @@
+.arrow-right{
+    font-size: 50px;
+    color:#ffffff;
+}
+.blog-card:hover {
+    position:relative;
+    background-image:url(../../../images/comma.png);
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position:right center;
+    height: 100%;
+    
+}
+.blog-card:hover::before{
+    height:100%;
+    content:' ';
+    position: absolute;
+    top: 0;
+    width: 100%;
+    right: 0;
+    background: linear-gradient(120deg, rgb(6, 206, 159), rgb(112, 223, 243));
+    z-index: -10;
+}
+.blog-card:hover .blogImg{
+    display: none;
+}
+.blog-card:hover p{
+    display: none;
+}
+.blog-card:hover .secondary-text{
+    color: white;
+}

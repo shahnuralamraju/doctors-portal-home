@@ -27,10 +27,10 @@ const blogsData = [
 
 const Blogs = () => {
     return (
-        <section className='services-container'>
+        <section style={{margin:"10em 0"}}>
             <div style={{marginBottom:"6em"}} className="text-center">
-                <h5 style={{ color: "#1CC7C1" }}>OUR BLOGS</h5>
-                <h2 style={{ color: "#3A4256" }}>From Our Blog News</h2>
+                <h5 className='primary-text'>OUR BLOGS</h5>
+                <h2 className='secondary-text'>From Our Blog News</h2>
             </div>
             <div className='container mt-5 mb-5'>
                 <div className="row g-4">

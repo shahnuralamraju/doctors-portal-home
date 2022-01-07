@@ -1,0 +1,17 @@
+.footer-area{
+    background-image: url(../../../images/footer-bg.png);
+    background-position: right center;
+    background-repeat: no-repeat;
+    background-size:90%;
+}
+.list-icon{
+    text-decoration: none;
+    color: rgb(149, 153, 155);
+}
+.list-icon:hover{
+    color:#099b96;
+}
+.brand-icon{
+    color:#1cc;
+    font-size: 2em!important;
+}
