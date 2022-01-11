@@ -3,11 +3,11 @@ import Blogs from '../Blogs/Blogs';
 import ContactForm from '../ContactForm/ContactForm';
 import Doctors from '../Doctors/Doctors';
 import FeaturedService from '../FeaturedService/FeaturedService';
-import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import MakeAppointment from '../MakeAppointment/MakeAppointment';
 import Services from '../Services/Services';
 import Testimonials from '../Testimonials/Testimonials';
+import Footer from "../../Shared/Footer/Footer";
 
  
 const Home = () => {

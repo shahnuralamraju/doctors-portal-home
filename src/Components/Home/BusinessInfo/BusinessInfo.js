@@ -29,7 +29,7 @@ const BusinessInfo = () => {
         <section className='container'>
             <div className="row g-4">
                 {
-                    infosData.map((info) => <InfoCard info={info}></InfoCard>)
+                    infosData.map((info, index) => <InfoCard key={index} info={info}></InfoCard>)
                 }
             </div>
         </section>

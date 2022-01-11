@@ -14,7 +14,7 @@ const FooterColumn = ({ menuTitle, menuItems, img, media }) => {
             <h6 className="primary-text">{menuTitle}</h6>
             <ul className="list-unstyled mt-4">
                 {
-                    menuItems.map((item) => <li className='mt-3'> <Link className='list-icon' to={item.link}>{item.name}</Link> </li>)
+                    menuItems.map((item, index) => <li key={index} className='mt-3'> <Link className='list-icon' to={item.link}>{item.name}</Link> </li>)
                 }
             </ul>
             { media &&

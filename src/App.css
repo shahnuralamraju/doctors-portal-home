@@ -5,19 +5,30 @@
 
 .primary-btn{
   padding: 1em 2em;
-  background: linear-gradient(170deg, rgb(67, 235, 198), rgb(124, 225, 243));
+  background: linear-gradient(75deg, #19D3AE, #0fcfec);
   color: white;
-  font-weight: bold;
+  font-weight: 600;
   border:none;
   border-radius: 8px;
   font-size: 17px;
 }
 .primary-text{
   color:#1cc7c1;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .secondary-text{
   color:#3A4256;
-  font-weight: bold;
+  font-weight: 700;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

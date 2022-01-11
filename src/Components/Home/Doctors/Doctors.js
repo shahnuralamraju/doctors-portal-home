@@ -30,7 +30,7 @@ const Doctors = () => {
             <div className='container mt-5 mb-5'>
                 <div className="row g-4">
                     {
-                        doctorsData.map((doctor) => <DoctorCard doctor={doctor}></DoctorCard>)
+                        doctorsData.map((doctor, index) => <DoctorCard key={index} doctor={doctor}></DoctorCard>)
                     }
                 </div>
             </div>

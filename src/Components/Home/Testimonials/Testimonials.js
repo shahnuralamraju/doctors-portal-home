@@ -40,7 +40,7 @@ const Testimonials = () => {
 
                 <div className="row g-4">
                     {
-                        testiMonialsData.map((testimonial) => <TestimonialCard testimonial={testimonial}></TestimonialCard>)
+                        testiMonialsData.map((testimonial, index) => <TestimonialCard key={index} testimonial={testimonial}></TestimonialCard>)
                     }
                 </div>
 

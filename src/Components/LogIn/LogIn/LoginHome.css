@@ -1,0 +1,8 @@
+.login-container{
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: -3px -2px 5px rgb(238, 236, 236),2px 1px 5px rgb(238, 237, 237);
+    padding: 2.5em;
+}

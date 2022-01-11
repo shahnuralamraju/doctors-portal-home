@@ -33,7 +33,7 @@ const Services = () => {
             <div className='container mt-5 mb-5'>
                 <div className="row g-4">
                     {
-                        serviceData.map((service) => <ServiceCard service={service}></ServiceCard>)
+                        serviceData.map((service, index) => <ServiceCard key={index} service={service}></ServiceCard>)
                     }
                 </div>
             </div>

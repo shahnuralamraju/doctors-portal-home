@@ -35,7 +35,7 @@ const Blogs = () => {
             <div className='container mt-5 mb-5'>
                 <div className="row g-4">
                     {
-                        blogsData.map((blog) => <BlogCard blog={blog}></BlogCard>)
+                        blogsData.map((blog,index) => <BlogCard key={index} blog={blog}></BlogCard>)
                     }
                 </div>  
             </div>
