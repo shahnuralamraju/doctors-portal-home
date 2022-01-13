@@ -9,6 +9,7 @@ import "./App.css";
 import Appointment from "./Components/Appointment/Appointment/Appointment";
 // import PrivateRoute from "./Components/LogIn/PrivateRoute/PrivateRoute";
 import LoginHome from "./Components/LogIn/LogIn/LoginHome";
+import Dashboard from "./Components/Dashboard/Dashboard/Dashboard";
 export const UserContext = createContext();
 
 function App() {
@@ -25,6 +26,9 @@ function App() {
           </Route>
           <Route exact path="/login">
             <LoginHome />
+          </Route>
+          <Route path="/dashboard/appointment">
+            <Dashboard />
           </Route>
            
         </Switch>

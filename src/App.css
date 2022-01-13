@@ -32,3 +32,10 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+table td, table th {
+  border: none;
+}
+/* .borderless td, .borderless th {
+  border: none;
+} */

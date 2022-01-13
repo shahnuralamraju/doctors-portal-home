@@ -1,12 +1,14 @@
 .calendar-container{
-  max-width: 85%;
+  max-width: 80%;
   margin-top: 20px;
   background-color: #ffffff;
   border-radius: 3px;
   padding: 2em;
   box-shadow: 4px 8px 12px rgb(119, 115, 115);
 }
-
+.react-calendar{
+    background-color: white;
+}
 .react-calendar__navigation {
     display: flex;
     margin: 1em 0!important;
@@ -56,7 +58,6 @@
     color: #f80202;
 }
 .react-calendar__tile--range {
-    /* background-color: #19b10b!important; */
     background: linear-gradient(75deg, #19D3AE, #0fcfec)!important;
     color:white;
 }

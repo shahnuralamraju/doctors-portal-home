@@ -6,8 +6,6 @@ import "./AppointmentHeader.css";
 
 const AppointmentHeader = ({ handleDateChange, date }) => {
 
-    console.log(date)
-
     return (
         <main style={{ height: "635px" }} className='container d-flex align-items-center'>
             <div className="row  d-flex align-items-center justify-content-between mt-5 pt-5">
