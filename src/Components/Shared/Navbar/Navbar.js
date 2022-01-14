@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { UserContext } from '../../../App';
 import DocLogo from "../../../images/docLogo.png";
+import "./Navbar.css";
 
 const Navbar = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
@@ -17,19 +18,19 @@ const Navbar = () => {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <Link className="nav-link ms-5 text-dark" aria-current="page" to="/">Home</Link>
+                            <NavLink activeClassName="link-active" className="nav-link ms-5 text-dark" aria-current="page" to="/">Home</NavLink>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link ms-5 text-dark" to="/appointment">Appointment</Link>
+                            <NavLink activeClassName="link-active" className="nav-link ms-5 text-dark" to="/appointment">Appointment</NavLink>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link ms-5 text-dark" to="/">Dental Services</Link>
+                            <NavLink activeClassName="link-active" className="nav-link ms-5 text-dark" to="/dental">Dental Services</NavLink>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link ms-5 text-white" to="/dashboard/appointment">Dashboard</Link>
+                            <NavLink activeClassName="link-active" className="nav-link ms-5 text-white" to="/dashboard/dashboard">Dashboard</NavLink>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link ms-5 text-white" to="/">Blogs</Link>
+                            <NavLink activeClassName="link-active" className="nav-link ms-5 text-white" to="/blog">Blogs</NavLink>
                         </li>
                         <li className="nav-item dropdown">
                             <p className="nav-link  text-white ms-5  dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -38,12 +39,13 @@ const Navbar = () => {
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                                 {
                                     loggedInUser.success ?
-                                        <li onClick={() => setLoggedInUser({})}><Link to="/login" className="dropdown-item">Sign Out</Link></li>
+                                        <li onClick={() => setLoggedInUser({})}>
+                                            <NavLink activeClassName="link-active"  to="/login" className="dropdown-item">Sign Out</NavLink></li>
                                         : <><li className="nav-item">
-                                            <Link className="dropdown-item" to="/login">Login</Link>
+                                            <NavLink activeClassName="link-active" className="dropdown-item" to="/login">Login</NavLink>
                                         </li>
                                          <li className="nav-item">
-                                            <Link className="dropdown-item" to="/login">Sign Up</Link>
+                                            <NavLink activeClassName="link-active" className="dropdown-item" to="/login">Sign Up</NavLink>
                                         </li></>
                                 }
                             </ul>

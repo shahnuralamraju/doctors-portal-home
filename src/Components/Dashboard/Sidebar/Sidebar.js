@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 
@@ -6,11 +6,11 @@ import { SettingsOutlined, DashboardOutlined, SupervisorAccountOutlined, Calenda
 import "./Sidebar.css";
 import { Link, NavLink } from 'react-router-dom';
 import DocLogo from "../../../images/doc3.png"
+import { UserContext } from '../../../App';
 const useStyles = makeStyles(() => ({
     root: {
         color: "white",
         width: '100%',
-        maxWidth: 360,
     },
     btn: {
         paddingLeft: "2em"
@@ -20,44 +20,53 @@ const useStyles = makeStyles(() => ({
     },
     link: {
         color: "red",
-        textDecoration:"none"
+        textDecoration: "none"
     },
-    be: { 
+    be: {
         color: "white",
-
+        marginLeft: "-1.3em",
     }
 }));
 
-const navData = [
-    { name: "Dashboard", desti: "/dashboard/appointment", icon: DashboardOutlined },
-    { name: "Appointment", desti: "/", icon: CalendarTodayOutlined },
-    { name: "Prescription", desti: "/", icon: ReceiptOutlined },
-    { name: "Patients", desti: "/", icon: SupervisorAccountOutlined },
-    { name: "Settings", desti: "/", icon: SettingsOutlined },
-]
+
 
 const Sidebar = () => {
     const classes = useStyles();
+    const [loggedInUser] = useContext(UserContext);
+    const navData = [
+        { name: "Dashboard", desti: "/dashboard/dashboard", icon: DashboardOutlined },
+        { name: "Appointment", desti: "/dashboard/appointment", icon: CalendarTodayOutlined },
+        { name: "Patients", desti: "/dashboard/patient", icon: SupervisorAccountOutlined },
+        { name: "Prescription", desti: "/", icon: ReceiptOutlined },
+        { name: "Settings", desti: "/", icon: SettingsOutlined },
+    ]
 
     return (
         <div className="sidebar">
-           <Link to="/"> <div style={{width:"200px",height:"200px", borderRadius:"50%", paddingLeft:"2em", paddingTop:"2em"}}>
-                <img style={{width:"100%"}} src={DocLogo} alt="DocLogo" />
-            </div></Link>
-            <h4 className='text-center text-white'> Doctors Portal</h4>
-            <div className={`pt-3 ${classes.root}`}>
+            <Link to="/">
+                <div className='d-flex align-items-center justify-content-center pt-3'>
+                    <div style={{ width: "100px", height: "100px", borderRadius: "50%", }}>
+                        <img style={{ width: "100%", borderRadius: "50%", border: "8px solid white" }}
+                            src={`${loggedInUser.success ? loggedInUser.photo : DocLogo}`} alt="DocLogo" />
+                    </div>
+                </div>
+            </Link>
+            <h4 className='text-center text-white pt-2'> Doctors Portal</h4>
+            <div className={` ${classes.root}`}>
                 <List component="nav" aria-label="main mailbox folders">
 
                     {
-                        navData.map((nav, index) => <NavLink key={index} activeStyle={{color:"red"}}  className={classes.link} to={nav.desti}>
-                            <ListItem className={classes.btn} button>
-                                <ListItemIcon >
-                                    {<nav.icon className={classes.color} />}
-                                </ListItemIcon>
-                                <ListItemText className={classes.be} primary={nav.name} />
-                            </ListItem>
-                        </NavLink>)
+                        navData.map((nav, index) =>
+                            <NavLink key={index} activeClassName="on-active" className={classes.link} to={nav.desti}>
+                                <ListItem className={classes.btn} button>
+                                    <ListItemIcon >
+                                        {<nav.icon className={classes.color} />}
+                                    </ListItemIcon>
+                                    <ListItemText className={classes.be} primary={nav.name} />
+                                </ListItem>
+                            </NavLink>)
                     }
+
                 </List>
             </div>
         </div>

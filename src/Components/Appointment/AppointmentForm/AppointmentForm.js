@@ -32,14 +32,13 @@ const AppointmentForm = ({ modalIsOpen, closeModal, name, date }) => {
 
     const onSubmit = data => {
         data.serviceName = name;
-        data.date = date;
+        data.date = (new Date (date.setHours(0,0,0,0)));
         data.created = new Date();
         if (data) {
             axios.post(`http://localhost:5000/addAppointment`, data)
                 .then(res => {
                     if (res) {
                         closeModal();
-                        
                     }
                 })
         }
