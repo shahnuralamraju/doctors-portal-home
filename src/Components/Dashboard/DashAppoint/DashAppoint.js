@@ -13,9 +13,7 @@ const DashAppoint = () => {
         setSelectedDate(date)
 
     };
-    // console.log(new Date(new Date().setHours(0,0,0,0)))
-    // console.log(new Date(selectedDate))
-
+    
     useEffect(() => {
         fetch(`http://localhost:5000/appointmentByDate`, {
             method: "POST",

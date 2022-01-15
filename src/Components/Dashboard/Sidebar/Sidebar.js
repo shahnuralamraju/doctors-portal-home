@@ -37,7 +37,7 @@ const Sidebar = () => {
         { name: "Dashboard", desti: "/dashboard/dashboard", icon: DashboardOutlined },
         { name: "Appointment", desti: "/dashboard/appointment", icon: CalendarTodayOutlined },
         { name: "Patients", desti: "/dashboard/patient", icon: SupervisorAccountOutlined },
-        { name: "Prescription", desti: "/", icon: ReceiptOutlined },
+        { name: "Prescription", desti: "/dashboard/prescription", icon: ReceiptOutlined },
         { name: "Settings", desti: "/", icon: SettingsOutlined },
     ]
 

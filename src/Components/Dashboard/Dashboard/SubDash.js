@@ -1,17 +1,16 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Scrollbars from 'react-custom-scrollbars';
-import axios from 'axios';
 import TableSubDash from './TableSubDash';
 
 
 const SubDash = () => {
     const [appointments, setAppointments] = useState([]);
-
     useEffect(() => {
         axios.get(`http://localhost:5000/appointments`)
-            .then(res => setAppointments(res.data.reverse().slice(0, 15)))
-    }, [])
-
+            .then(res => setAppointments(res.data.reverse()))
+    }, []);
+  
     return (
         <div>
             <div className="d-flex align-items-center justify-content-between py-4">
@@ -22,13 +21,13 @@ const SubDash = () => {
                 <table className="table bg-white p-4">
                     <thead>
                         <tr>
-                            <th className="col-md-1">Sr.No</th>
-                            <th className="col-md-2 text-center">Name</th>
-                            <th className="col-md-1 text-center">Gender</th>
-                            <th className="col-md-2 text-center">Date</th>
-                            <th className="col-md-1">Weight</th>
-                            <th className="col-md-2 text-center">Contact</th>
-                            <th className="col-md-3 text-center">Address</th>
+                            <th scope='col' className="text-center">Sr.No</th>
+                            <th scope='col' className="text-center">Name</th>
+                            <th scope='col' className="text-center">Gender</th>
+                            <th scope='col' className="text-center">Date</th>
+                            <th scope='col' className="text-center">Weight</th>
+                            <th scope='col' className="text-center">Contact</th>
+                            <th scope='col' className="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>

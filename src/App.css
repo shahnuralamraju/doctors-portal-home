@@ -12,6 +12,17 @@
   border-radius: 8px;
   font-size: 17px;
 }
+.tertioary-btn{
+  padding: 0.6em 1.2em;
+  background: linear-gradient(75deg, #19D3AE, #0fcfec);
+  color: white;
+  font-weight: 400;
+  border:none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+ 
 .primary-text{
   color:#1cc7c1;
   font-weight: 500;
@@ -36,6 +47,3 @@ input[type=number] {
 table td, table th {
   border: none;
 }
-/* .borderless td, .borderless th {
-  border: none;
-} */

@@ -1,3 +1,5 @@
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import Sidebar from '../Sidebar/Sidebar';
 import DashCard from './DashCard';
 import SubDash from './SubDash';
@@ -21,7 +23,16 @@ const infosData = [
 
 ]
 const Dashboard = () => {
-
+    const [appointments, setAppointments] = useState([]);
+    useEffect(() => {
+        axios.get(`http://localhost:5000/appointments`)
+            .then(res => setAppointments(res.data.reverse()))
+    }, [])
+      const pendingAppoint = appointments.filter((appoint) => appoint.status === "Approaved");
+     //const pendingAppoint = appointments.filter((appoint) => appoint.status !== "Approaved" && appoint.status !== "Cancelled");
+      //const pendingAppoint = appointments.filter((appoint) => new Date(appoint.date) === new Date(new Date().setHours(0,0,0,0)));
+    console.log(pendingAppoint)
+    // console.log(pendingAppoint)(new Date(new Date().setHours(0,0,0,0)))
     return (
         <section style={{ backgroundColor: "#f4fffb" }} >
             <div className="row w-100">

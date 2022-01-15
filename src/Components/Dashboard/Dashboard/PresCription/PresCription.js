@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import Sidebar from '../Sidebar/Sidebar';
 import { Scrollbars } from 'react-custom-scrollbars';
+import Sidebar from '../../Sidebar/Sidebar';
 
-const Patient = () => {
+const PresCription = () => {
 
     const [appointments, setAppointments] = useState([]);
 
@@ -22,7 +22,7 @@ const Patient = () => {
                 <div className="col-md-8 p-2 ms-3">
                     <div className="py-3">
                         <h4 className="secondary-text">
-                            Patients
+                            Prescription
                         </h4>
                     </div>
                     <div className="row ms-2 px-4 pb-5 bg-white shadow">
@@ -36,11 +36,10 @@ const Patient = () => {
                                 <tr>
                                     <th className="col-md-1">Sr.No</th>
                                     <th className="col-md-2 text-center">Name</th>
-                                    <th className="col-md-2 text-center">Gender</th>
-                                    <th className="col-md-1 text-center">Age</th>
-                                    <th className="col-md-1">Weight</th>
+                                    <th className="col-md-1 text-center">Gender</th>
                                     <th className="col-md-2 text-center">Contact</th>
-                                    <th className="col-md-3 text-center">Address</th>
+                                    <th className="col-md-4 text-center">Prescription ID</th>
+                                    <th className="col-md-2">Details</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -50,10 +49,9 @@ const Patient = () => {
                                             <th scope="row">{index + 1}</th>
                                             <td className='text-center'>{appointment.name}</td>
                                             <td className='text-center'>{appointment.gender}</td>
-                                            <td className='text-center'>{appointment.age}</td>
-                                            <td className='text-center'>{appointment.weight}</td>
                                             <td className='text-center'>{appointment.number}</td>
-                                            <td className='text-center'>{appointment.address}</td>
+                                            <td className='text-center'>{appointment._id}</td>
+                                            <td><span className="tertioary-btn">View</span></td>
                                         </tr>)
                                     }
                             </tbody>
@@ -66,4 +64,4 @@ const Patient = () => {
     );
 };
 
-export default Patient;
+export default PresCription;

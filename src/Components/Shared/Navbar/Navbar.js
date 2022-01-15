@@ -6,6 +6,7 @@ import "./Navbar.css";
 
 const Navbar = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+    
     return (
         <nav className="navbar navbar-expand-lg navbar-light ">
             <div className="container pt-2">
@@ -17,6 +18,7 @@ const Navbar = () => {
                 </div>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+                      
                         <li className="nav-item">
                             <NavLink activeClassName="link-active" className="nav-link ms-5 text-dark" aria-current="page" to="/">Home</NavLink>
                         </li>
@@ -24,7 +26,7 @@ const Navbar = () => {
                             <NavLink activeClassName="link-active" className="nav-link ms-5 text-dark" to="/appointment">Appointment</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink activeClassName="link-active" className="nav-link ms-5 text-dark" to="/dental">Dental Services</NavLink>
+                            <NavLink activeClassName="link-active" className="nav-link ms-5 text-dark" to="/snackbar">Dental Services</NavLink>
                         </li>
                         <li className="nav-item">
                             <NavLink activeClassName="link-active" className="nav-link ms-5 text-white" to="/dashboard/dashboard">Dashboard</NavLink>
@@ -40,13 +42,13 @@ const Navbar = () => {
                                 {
                                     loggedInUser.success ?
                                         <li onClick={() => setLoggedInUser({})}>
-                                            <NavLink activeClassName="link-active"  to="/login" className="dropdown-item">Sign Out</NavLink></li>
+                                            <NavLink activeClassName="link-active" to="/login" className="dropdown-item">Sign Out</NavLink></li>
                                         : <><li className="nav-item">
                                             <NavLink activeClassName="link-active" className="dropdown-item" to="/login">Login</NavLink>
                                         </li>
-                                         <li className="nav-item">
-                                            <NavLink activeClassName="link-active" className="dropdown-item" to="/login">Sign Up</NavLink>
-                                        </li></>
+                                            <li className="nav-item">
+                                                <NavLink activeClassName="link-active" className="dropdown-item" to="/login">Sign Up</NavLink>
+                                            </li></>
                                 }
                             </ul>
                         </li>
