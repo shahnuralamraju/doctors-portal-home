@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
-
-import { SettingsOutlined, DashboardOutlined, SupervisorAccountOutlined, CalendarTodayOutlined, ReceiptOutlined } from '@material-ui/icons';
+import { DashboardOutlined, SupervisorAccountOutlined, CalendarTodayOutlined, ReceiptOutlined, Home } from '@material-ui/icons';
 import "./Sidebar.css";
 import { Link, NavLink } from 'react-router-dom';
 import DocLogo from "../../../images/doc3.png"
 import { UserContext } from '../../../App';
+
 const useStyles = makeStyles(() => ({
     root: {
         color: "white",
@@ -38,7 +38,7 @@ const Sidebar = () => {
         { name: "Appointment", desti: "/dashboard/appointment", icon: CalendarTodayOutlined },
         { name: "Patients", desti: "/dashboard/patient", icon: SupervisorAccountOutlined },
         { name: "Prescription", desti: "/dashboard/prescription", icon: ReceiptOutlined },
-        { name: "Settings", desti: "/", icon: SettingsOutlined },
+        { name: "Home", desti: "/", icon: Home },
     ]
 
     return (

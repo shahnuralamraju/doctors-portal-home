@@ -1,23 +1,17 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Scrollbars from 'react-custom-scrollbars';
 import TableSubDash from './TableSubDash';
 
 
-const SubDash = () => {
-    const [appointments, setAppointments] = useState([]);
-    useEffect(() => {
-        axios.get(`http://localhost:5000/appointments`)
-            .then(res => setAppointments(res.data.reverse()))
-    }, []);
-  
+const SubDash = ({ appointments, appointStatus, setAppointStatus, title }) => {
+    
     return (
         <div>
             <div className="d-flex align-items-center justify-content-between py-4">
-                <h5 className='primary-text'>Recent Appointment {appointments.length}</h5>
+                <h5 className='primary-text'> {title} Appointments {appointments.length}</h5>
                 <h4>Calender</h4>
             </div>
-            <Scrollbars style={{ height: "50vh", width: "100%" }}>
+            <Scrollbars style={{ height: "48vh", width: "100%" }}>
                 <table className="table bg-white p-4">
                     <thead>
                         <tr>
@@ -32,7 +26,14 @@ const SubDash = () => {
                     </thead>
                     <tbody>
                         {
-                            appointments.map((appointment, index) => <TableSubDash key={appointment._id} index={index} appointment={appointment} />)
+                            appointments.map((appointment, index) =>
+                                <TableSubDash
+                                    key={appointment._id}
+                                    index={index}
+                                    appointment={appointment}
+                                    appointStatus={appointStatus}
+                                    setAppointStatus={setAppointStatus}
+                                />)
                         }
                     </tbody>
                 </table>

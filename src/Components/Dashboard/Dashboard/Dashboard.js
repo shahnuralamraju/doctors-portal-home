@@ -3,36 +3,36 @@ import { useEffect, useState } from 'react';
 import Sidebar from '../Sidebar/Sidebar';
 import DashCard from './DashCard';
 import SubDash from './SubDash';
-const infosData = [
-    {
-        title: "Pending",
-        background: "danger"
-    },
-    {
-        title: "Today's",
-        background: "primary"
-    },
-    {
-        title: "Total's",
-        background: "success"
-    },
-    {
-        title: "Total's",
-        background: "warning"
-    },
 
-]
 const Dashboard = () => {
+
     const [appointments, setAppointments] = useState([]);
+    const [appointStatus, setAppointStatus] = useState(false);
+    const [title, setTitle] = useState(null);
+
     useEffect(() => {
         axios.get(`http://localhost:5000/appointments`)
             .then(res => setAppointments(res.data.reverse()))
-    }, [])
-      const pendingAppoint = appointments.filter((appoint) => appoint.status === "Approaved");
-     //const pendingAppoint = appointments.filter((appoint) => appoint.status !== "Approaved" && appoint.status !== "Cancelled");
-      //const pendingAppoint = appointments.filter((appoint) => new Date(appoint.date) === new Date(new Date().setHours(0,0,0,0)));
-    console.log(pendingAppoint)
-    // console.log(pendingAppoint)(new Date(new Date().setHours(0,0,0,0)))
+    }, [appointStatus]);
+
+    const approavedAppoints = appointments.filter((appoint) => appoint.status === "Approaved");
+    const cancelledAppoints = appointments.filter((appoint) => appoint.status === "Cancelled");
+    const pendingAppoints = appointments.filter((appoint) => appoint.status !== "Approaved" && appoint.status !== "Cancelled");
+
+    // const todayAppoints = appointments.filter((appoint) => new Date(appoint.date) === new Date(new Date().setHours(0, 0, 0, 0)));
+    // console.log(todayAppoints)
+
+    const DashInfosData = [
+        { title: "Pending", background: "primary", appStatus: pendingAppoints.length },
+        { title: "Cancel's", background: "danger", appStatus: cancelledAppoints.length },
+        { title: "Approaved", background: "success", appStatus: approavedAppoints.length },
+        { title: "Total's", background: "warning", appStatus: appointments.length },
+    ];
+
+    const handleStateOnClick = (name) => {
+        setTitle(name);
+    }
+
     return (
         <section style={{ backgroundColor: "#f4fffb" }} >
             <div className="row w-100">
@@ -47,12 +47,28 @@ const Dashboard = () => {
                     </div>
                     <div className="row g-4">
                         {
-                            infosData.map((info, index) => <DashCard key={index} info={info}></DashCard>)
+                            DashInfosData.map((info, index) =>
+                                <DashCard
+                                    key={index}
+                                    info={info}
+                                    handleStateOnClick={handleStateOnClick}
+                                />)
                         }
                     </div>
 
                     <div className="row ms-2 px-4 pb-5 bg-white shadow">
-                        <SubDash />
+                        <SubDash
+                            appointments={
+                                title === "Pending" ? pendingAppoints
+                                    :
+                                    title === "Cancel's" ? cancelledAppoints
+                                        :
+                                        title === "Approaved" ? approavedAppoints : appointments
+                            }
+                            title={title}
+                            appointStatus={appointStatus}
+                            setAppointStatus={setAppointStatus}
+                        />
                     </div>
                 </div>
             </div>

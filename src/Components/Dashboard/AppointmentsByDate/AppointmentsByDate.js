@@ -4,7 +4,7 @@ import Scrollbars from 'react-custom-scrollbars';
 const AppointmentsByDate = ({ appointments }) => {
     return (
         <div className='pt-5'>
-            <Scrollbars style={{ height: "45vh", width: "100%"}}>
+            <Scrollbars style={{ height: "45vh", width: "100%" }}>
                 <table className="table bg-white">
                     <thead>
                         <tr>
@@ -17,7 +17,9 @@ const AppointmentsByDate = ({ appointments }) => {
                     <tbody>
                         {
                             appointments.map((appointment, index) => <tr className='border-0' key={appointment._id}>
-                                <th scope="row">{index + 1}</th>
+                                <th scope="row">
+                                    {(index + 1) >= 10 ? (index + 1) : "0" + (index + 1)}
+                                </th>
                                 <td className='text-center'>{appointment.name}</td>
                                 <td className='text-center'>{appointment.gender}</td>
                                 <td className='text-center'>

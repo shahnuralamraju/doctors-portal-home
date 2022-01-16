@@ -3,6 +3,25 @@
   font-family:"Poppins" ;
 }
 
+.status-div{
+  padding: 0.6em 1.2em;
+  color: white;
+  font-weight: 400;
+  /* width: 80px!important; */
+  border:none;
+  border-radius: 8px;
+  font-size: 14px;
+}
+.Pending{
+  background: rgb(100, 100, 231);
+}
+.Approaved{
+  background: rgb(7, 90, 7);
+}
+.Cancelled{
+  background:#DC3545;
+}
+
 .primary-btn{
   padding: 1em 2em;
   background: linear-gradient(75deg, #19D3AE, #0fcfec);
