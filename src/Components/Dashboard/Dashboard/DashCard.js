@@ -1,15 +1,17 @@
 import React from 'react';
 
 const DashCard = ({ info, handleStateOnClick }) => {
-    const { title, background, appStatus } = info;
+    const { title, background, appStatusLength } = info;
     return (
         <div onClick={() => handleStateOnClick(title)} style={{ cursor: "pointer" }}
-            className='col-md-3 mb-5'>
+            className='col mb-5'>
             <div className={`d-flex align-items-center rounded p-3 justify-content-center text-white bg-${background}`}>
                 <div>
-                    <h3 style={{ fontSize: "3em" }}>{appStatus >= 10 ? appStatus : "0" + appStatus}</h3>
+                    <h3 style={{ fontSize: "2.5em" }}>
+                        {appStatusLength >= 10 ? appStatusLength : "0" + appStatusLength}
+                    </h3>
                 </div>
-                <div className='ms-4'>
+                <div className='ms-3'>
                     {title}
                     <p>Appointments</p>
                 </div>

@@ -18,15 +18,14 @@ const Dashboard = () => {
     const approavedAppoints = appointments.filter((appoint) => appoint.status === "Approaved");
     const cancelledAppoints = appointments.filter((appoint) => appoint.status === "Cancelled");
     const pendingAppoints = appointments.filter((appoint) => appoint.status !== "Approaved" && appoint.status !== "Cancelled");
-
-    // const todayAppoints = appointments.filter((appoint) => new Date(appoint.date) === new Date(new Date().setHours(0, 0, 0, 0)));
-    // console.log(todayAppoints)
+    const todaysAppoints = appointments.filter((appoint) => new Date(appoint.date).toDateString() === new Date().toDateString());
 
     const DashInfosData = [
-        { title: "Pending", background: "primary", appStatus: pendingAppoints.length },
-        { title: "Cancel's", background: "danger", appStatus: cancelledAppoints.length },
-        { title: "Approaved", background: "success", appStatus: approavedAppoints.length },
-        { title: "Total's", background: "warning", appStatus: appointments.length },
+        { title: "Today's", background: "today", appStatusLength: todaysAppoints.length },
+        { title: "Pending", background: "primary", appStatusLength: pendingAppoints.length },
+        { title: "Cancel's", background: "danger", appStatusLength: cancelledAppoints.length },
+        { title: "Approaved", background: "success", appStatusLength: approavedAppoints.length },
+        { title: "Total's", background: "warning", appStatusLength: appointments.length },
     ];
 
     const handleStateOnClick = (name) => {
@@ -39,13 +38,13 @@ const Dashboard = () => {
                 <div className="col-md-2">
                     <Sidebar />
                 </div>
-                <div className="col-md-9 p-2 ms-3">
+                <div className="col-md-10 p-4 ">
                     <div className="py-3">
                         <h4 className="secondary-text">
                             Dashboard
                         </h4>
                     </div>
-                    <div className="row g-4">
+                    <div className="row row-cols-auto g-4">
                         {
                             DashInfosData.map((info, index) =>
                                 <DashCard
@@ -55,15 +54,17 @@ const Dashboard = () => {
                                 />)
                         }
                     </div>
-
-                    <div className="row ms-2 px-4 pb-5 bg-white shadow">
+                    <div>
                         <SubDash
                             appointments={
                                 title === "Pending" ? pendingAppoints
                                     :
                                     title === "Cancel's" ? cancelledAppoints
                                         :
-                                        title === "Approaved" ? approavedAppoints : appointments
+                                        title === "Approaved" ? approavedAppoints
+                                            :
+                                            title === "Today's" ? todaysAppoints
+                                                : appointments
                             }
                             title={title}
                             appointStatus={appointStatus}

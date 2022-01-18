@@ -21,7 +21,9 @@
 .Cancelled{
   background:#DC3545;
 }
-
+.bg-today{
+  background: linear-gradient(18deg, rgba(124,237,57,1) 0%, rgba(27,214,140,1) 100%);
+}
 .primary-btn{
   padding: 1em 2em;
   background: linear-gradient(75deg, #19D3AE, #0fcfec);

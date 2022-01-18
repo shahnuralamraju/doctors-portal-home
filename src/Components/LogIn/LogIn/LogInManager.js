@@ -23,7 +23,7 @@ export const createUserInEmailAndPassword = (name, email, password) => {
       newUserInfo.success = true;
       newUserInfo.name = name;
       updateUserName(name);
-      console.log(newUserInfo);
+      //console.log(newUserInfo);
       return newUserInfo;
       
     })

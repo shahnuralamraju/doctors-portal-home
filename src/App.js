@@ -13,7 +13,7 @@ import Dashboard from "./Components/Dashboard/Dashboard/Dashboard";
 import Patient from "./Components/Dashboard/Patient/Patient";
 import DashAppoint from "./Components/Dashboard/DashAppoint/DashAppoint";
 import PresCription from "./Components/Dashboard/PresCription/PresCription";
-import { Snackbar } from "@material-ui/core";
+import SnackBar from "./Components/Shared/SnackBar/SnackBar";
 
 export const UserContext = createContext();
 
@@ -34,7 +34,7 @@ function App() {
             <LoginHome />
           </Route>
           <Route exact path="/snackbar">
-            <Snackbar />
+            <SnackBar />
           </Route>
           <Route exact path="/dashboard/appointment">
             <DashAppoint />

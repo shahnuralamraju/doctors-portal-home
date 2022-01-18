@@ -14,15 +14,11 @@ import React, { useEffect, useState } from 'react';
             axios.get(`http://localhost:5000/appointments`)
                 .then(res => setAppointments(res.data.reverse()))
         }, [appointments])
-        //  const approavedAppoint = appointments.filter((appoint) => appoint.status === "Approaved");
-        // const pendingAppoint = appointments.filter((appoint) => appoint.status !== "Approaved" && appoint.status !== "Cancelled");
-        //   const pendingAppoint = appointments.filter((appoint) => new Date(appoint.date) === new Date(new Date().setHours(0,0,0,0)));
-        // console.log(pendingAppoint)
-        // console.log(pendingAppoint)(new Date(new Date().setHours(0,0,0,0)))
+        
         
         return (
             <div>
-                <h1 className='text-center'>This is Snackbar</h1>
+                <h1 className='text-center text-dark'>This is Snackbar</h1>
             </div>
         );
     };
