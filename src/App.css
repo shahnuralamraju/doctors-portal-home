@@ -7,7 +7,6 @@
   padding: 0.6em 1.2em;
   color: white;
   font-weight: 400;
-  /* width: 80px!important; */
   border:none;
   border-radius: 8px;
   font-size: 14px;
@@ -32,6 +31,9 @@
   border:none;
   border-radius: 8px;
   font-size: 17px;
+}
+.primary-btn:active{
+  outline-color: cyan;
 }
 .tertioary-btn{
   padding: 0.6em 1.2em;

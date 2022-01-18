@@ -1,14 +1,16 @@
-import "firebase/auth";
-import firebase from "firebase/app";
+import { initializeApp } from "firebase/app";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, updateProfile, signOut } from "firebase/auth";
 import firebaseConfig from './firebase.Config';
-export const initializeLoginFramework = () => {
-  !firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app();
-}
+
+// firebase initialize
+initializeApp(firebaseConfig);
+
+const auth = getAuth();
 
 // google Sign In With Popup
 export const handleGoogleSignIn = () => {
-  const googleprovider = new firebase.auth.GoogleAuthProvider();
-  return firebase.auth().signInWithPopup(googleprovider)
+  const googleProvider = new GoogleAuthProvider();
+  return signInWithPopup(auth, googleProvider)
     .then(res => loginUserInfo(res.user))
     .catch((error) => errorInfo(error));
 };
@@ -16,26 +18,27 @@ export const handleGoogleSignIn = () => {
 
 // createUserInEmailAndPassword
 export const createUserInEmailAndPassword = (name, email, password) => {
-  return firebase.auth().createUserWithEmailAndPassword(email, password)
+  return createUserWithEmailAndPassword(auth, email, password)
     .then((res) => {
       const newUserInfo = res.user;
       newUserInfo.error = "";
       newUserInfo.success = true;
       newUserInfo.name = name;
       updateUserName(name);
-      //console.log(newUserInfo);
+      console.log(newUserInfo);
       return newUserInfo;
-      
+
     })
     .catch((error) => errorInfo(error));
 }
 
 // signInUserWithEmailAndPassword
 export const signInUserWithEmailAndPassword = (email, password) => {
-  return firebase.auth().signInWithEmailAndPassword(email, password)
+  return signInWithEmailAndPassword(auth, email, password)
     .then((res) => {
       const newUserInfo = res.user;
       newUserInfo.error = "";
+      newUserInfo.photo = "";
       newUserInfo.name = res.user.displayName;
       newUserInfo.success = true;
       return newUserInfo;
@@ -45,14 +48,11 @@ export const signInUserWithEmailAndPassword = (email, password) => {
 
 // sign out
 export const handleSignOut = () => {
-  return firebase.auth().signOut()
+  return signOut(auth)
     .then(() => {
       const signedOutUser = {
         isSignedIn: false,
         success: false,
-        name: '',
-        email: '',
-        photo: ''
       }
       return signedOutUser;
     })
@@ -61,10 +61,9 @@ export const handleSignOut = () => {
 
 // updateuser name
 const updateUserName = (name) => {
-  firebase.auth().currentUser
-    .updateProfile({ 
-        displayName: name,
-    });
+  updateProfile(auth.currentUser, {
+    displayName: name
+  })
 };
 
 // collectiong LoginUser Success Info
@@ -84,7 +83,8 @@ const loginUserInfo = (result) => {
 // Collecting All Error Info
 const errorInfo = (error) => {
   const newUserInfo = {};
-  newUserInfo.error = error.message;
+  newUserInfo.errorStatus = error.message;
+  newUserInfo.error = "Please Type Correct Password and Email";
   newUserInfo.success = false;
   return newUserInfo;
 };

@@ -2,34 +2,39 @@ import React from 'react';
 import { useState, useContext } from "react";
 import { UserContext } from "../../../App";
 import { useHistory, useLocation } from "react-router-dom";
-import { createUserInEmailAndPassword, handleGoogleSignIn, initializeLoginFramework, signInUserWithEmailAndPassword } from './LogInManager';
+import { createUserInEmailAndPassword, handleGoogleSignIn, signInUserWithEmailAndPassword } from './LogInManager';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import { Container, Typography, Grid, TextField, CssBaseline, Button, Avatar } from '@material-ui/core';
-import { UseStyles } from './UseStyles';
-
+import { Container, Typography, Grid, TextField, CssBaseline, Button, Avatar, IconButton } from '@material-ui/core';
+import { UseStyles, emailPattern, passwordPattern, namePattern } from './UseStyles';
+import { Visibility, VisibilityOff } from '@material-ui/icons';
+import { useForm } from 'react-hook-form';
 
 const LogIn = () => {
     const classes = UseStyles();
+    const { register, handleSubmit, trigger, formState: { errors } } = useForm();
+    const [hidePass, setHidePass] = useState(true);
     const [newUser, setNewUser] = useState(false);
-    const [user, setUser] = useState({
-        success: false,
-        isSignedIn: false,
-        error: "",
-        name: "",
-        email: "",
-        password: ""
-    });
-
-    initializeLoginFramework();
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     let history = useHistory();
     let location = useLocation();
     let { from } = location.state || { from: { pathname: "/" } };
 
+    const onSubmit = data => {
+        if (newUser) {
+            createUserInEmailAndPassword(data.name, data.email, data.password)
+                .then(res => handleUserInfo(res));
+        }
+        if (!newUser) {
+            signInUserWithEmailAndPassword(data.email, data.password)
+                .then(res => handleUserInfo(res));
+        }
+    };
+
     const handleUserInfo = result => {
-        setUser(result);
         setLoggedInUser(result);
-        history.replace(from);
+        if(result.success){
+            history.replace(from);
+        }
     }
 
     // google SignIn
@@ -38,33 +43,6 @@ const LogIn = () => {
             .then(res => handleUserInfo(res));
     };
 
-    const handleOnChange = (e) => {
-        let isFieldValid = true;
-        if (e.target.name === "email") {
-            isFieldValid = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(e.target.value);
-        }
-        if (e.target.name === "password") {
-            isFieldValid = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/.test(e.target.value);
-        }
-        if (isFieldValid) {
-            const newUserInfo = { ...user };
-            newUserInfo[e.target.name] = e.target.value;
-            setUser(newUserInfo)
-        }
-    };
-
-    const handleSubmit = (e) => {
-        if (newUser && user.email && user.password) {
-            createUserInEmailAndPassword(user.name, user.email, user.password)
-                .then(res => handleUserInfo(res));
-        }
-        if (!newUser && user.email && user.password) {
-            console.log("submitted")
-            signInUserWithEmailAndPassword(user.email, user.password)
-                .then(res => handleUserInfo(res));
-        }
-        e.preventDefault();
-    };
 
     return (
         <Container component="main" maxWidth="xs">
@@ -76,18 +54,89 @@ const LogIn = () => {
                 <Typography component="h3" variant="h5">
                     {newUser ? "Sign Up" : "Sign In"}
                 </Typography>
-                <form className={classes.form} onSubmit={handleSubmit} autoComplete='off'>
+                <form className={classes.form} onSubmit={handleSubmit(onSubmit)} >
                     <Grid container spacing={2}>
                         {newUser &&
                             <Grid item xs={12}>
-                                <TextField onChange={handleOnChange} name="name" required fullWidth label="Your Name" autoFocus />
+                                <TextField
+                                    margin="normal"
+                                    color={errors.name ? "secondary" : "primary"}
+                                    fullWidth
+                                    label="Your Name"
+                                    name="name"
+                                    onKeyUp={() => trigger("name")}
+                                    autoFocus
+                                    {...register("name", {
+                                        required: "You should write your name here",
+                                        minLength: {
+                                            value: 3,
+                                            message: "Name should have minimum 3 character"
+                                        },
+                                        pattern: {
+                                            value: namePattern,
+                                            message: "Name contains letters only"
+                                        },
+                                    })}
+                                    error={Boolean(errors.name)}
+                                    helperText={errors.name?.message}
+                                />
                             </Grid>}
                         <Grid item xs={12}>
-                            <TextField onChange={handleOnChange} label="Email Address" name="email" required fullWidth autoFocus />
+                            <TextField
+                                margin="normal"
+                                placeholder="example@gmail.com"
+                                fullWidth
+                                label="Email Address"
+                                name="email"
+                                onKeyUp={() => trigger("email")}
+                                {...register("email", {
+                                    required: "You should write your email here",
+                                    pattern: {
+                                        value: emailPattern,
+                                        message: "Enter a valid email address"
+                                    },
+                                })}
+                                error={Boolean(errors.email)}
+                                helperText={errors.email?.message}
+                            />
                         </Grid>
                         <Grid item xs={12}>
-                            <TextField onChange={handleOnChange} required fullWidth name="password" label="Password" type="password" />
+                            <TextField
+                                margin="normal"
+                                fullWidth
+                                placeholder="PassWord#12"
+                                name="password"
+                                onKeyUp={() => trigger("password")}
+                                label="Password"
+                                type={!hidePass ? "text" : "password"}
+                                InputProps={{
+                                    endAdornment: (
+                                        <IconButton size="small" onClick={() => setHidePass(!hidePass)}>
+                                            {hidePass ? <VisibilityOff /> : <Visibility color='primary' />}
+                                        </IconButton>
+                                    ),
+                                }}
+                                {...register("password", {
+                                    required: "You should write your password here",
+                                    pattern: {
+                                        value: passwordPattern,
+                                        message: "Password contain at least one special character,number, capital and small letter",
+                                    },
+                                    minLength: {
+                                        value: 8,
+                                        message: "Password contain minimum 8 character"
+                                    },
+                                    maxLength: {
+                                        value: 10,
+                                        message: "Password contain maximum 10 character"
+                                    },
+
+                                })}
+                                error={Boolean(errors.password)}
+                                helperText={errors.password?.message}
+                            />
                         </Grid>
+                        
                     </Grid>
                     <Grid container justifyContent="flex-end" spacing={1}>
                         <Grid item xs={12}>
@@ -99,7 +148,6 @@ const LogIn = () => {
                     <Button type="submit" fullWidth variant="contained" color="secondary" className={`primary-btn ${classes.submit}`} >
                         {newUser ? 'Sign Up' : 'Sign In'}
                     </Button>
-
                 </form>
                 <Grid container>
                     <Grid item xs={12}>
